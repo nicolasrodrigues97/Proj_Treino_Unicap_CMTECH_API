@@ -1,4 +1,4 @@
-﻿using Projeto_CMTECH_UNICAP.Models;
+using Projeto_CMTECH_UNICAP.Models;
 using Projeto_CMTECH_UNICAP.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -64,12 +64,12 @@ namespace Projeto_CMTECH_UNICAP.Controllers
             }
         }
         [HttpPost("CriarUsuario")]
-        public async Task<ActionResult> Create(Usuario usuario)
+        public async Task<ActionResult> Create([FromBody] Usuario usuario)
         {
             try
             {
                 await _usuarioService.CreateUsuario(usuario);
-                return CreatedAtRoute(nameof(GetUsuario), new { id = usuario.id }, usuario);
+                return Created("CriarUsuario", usuario);
             }
             catch
             {
